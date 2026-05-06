@@ -98,14 +98,28 @@ function xgbScore(p: PatientInput): number {
 // Calibration: the raw model is mildly biased toward higher risk on healthy
 // young profiles. We apply a deterministic clinical override + a gentle
 // linear calibration so predictions match the published guidance.
-function calibrate(p: PatientInput, raw: number): number {
-  // Hard clinical rule: clearly low-risk profile must read low.
-  if (p.age < 35 && p.chol < 200 && p.trestbps < 130 && p.oldpeak < 1 && p.exang === 0) {
-    return Math.min(raw, 0.15);
+  function calibrate(p: PatientInput, raw: number): number {
+
+  // HARD SAFETY OVERRIDE
+  // Healthy young patients must NEVER show high risk
+  if (
+    p.age < 30 &&
+    p.trestbps < 125 &&
+    p.chol < 200 &&
+    p.oldpeak < 1 &&
+    p.exang === 0
+  ) {
+    return Math.min(raw, 0.18);
   }
-  // Soft calibration: pull center toward 0.45, slight contrast boost.
-  const calibrated = (raw - 0.5) * 1.15 + 0.42;
-  return Math.max(0.02, Math.min(0.98, calibrated));
+
+  // Recalibration Layer
+  let calibrated = raw;
+
+  // Reduce synthetic-data bias
+  calibrated = (calibrated - 0.5) * 0.85 + 0.38;
+
+  // Clamp final range
+  return Math.max(0.03, Math.min(0.95, calibrated));
 }
 
 export function predictAll(p: PatientInput): ModelResult[] {
@@ -124,10 +138,16 @@ export function riskLevel(prob: number): {
   label: "Low" | "Moderate" | "High" | "Very High";
   tone: "success" | "warning" | "destructive";
 } {
-  if (prob <= 0.3) return { label: "Low", tone: "success" };
-  if (prob <= 0.7) return { label: "Moderate", tone: "warning" };
-  if (prob < 0.85) return { label: "High", tone: "destructive" };
-  return { label: "Very High", tone: "destructive" };
+  if (prob <= 0.30)
+  return { label: "Low", tone: "success" };
+
+if (prob <= 0.70)
+  return { label: "Moderate", tone: "warning" };
+
+if (prob <= 0.85)
+  return { label: "High", tone: "destructive" };
+
+return { label: "Very High", tone: "destructive" };
 }
 
 const FEATURE_LABELS: Record<string, string> = {
