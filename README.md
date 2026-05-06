@@ -26,3 +26,4 @@ UI Components: Shadcn UI & Framer Motion for medical-grade aesthetics
 The system processes 14 clinical features—including cholesterol levels, resting blood pressure, and ST-segment depression—through a multi-stage validation pipeline. By comparing outputs across three distinct model architectures, the system provides a "Consensus Score" that minimizes false positives in low-risk patients.
 
 Developed by Anas Rahman | BTech CSE AI (1st Year Student)
+ 
