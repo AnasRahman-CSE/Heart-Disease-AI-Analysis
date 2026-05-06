@@ -1,6 +1,6 @@
-Heart-Disease-AI-Analysis 🫀
+Heart-Disease-AI-Analysis 
 
-A clinical-grade diagnostic intelligence system designed to evaluate cardiovascular risk factors using an Ensemble Machine Learning architecture. This project bridges the gap between raw patient data and actionable clinical insights through a high-performance web interface.
+🫀A clinical-grade diagnostic intelligence system designed to evaluate cardiovascular risk factors using an Ensemble Machine Learning architecture. This project bridges the gap between raw patient data and actionable clinical insights through a high-performance web interface.
 
 🚀 Key Features
 
@@ -23,7 +23,6 @@ Logic: Custom Machine Learning inference engine implemented in TypeScript
 UI Components: Shadcn UI & Framer Motion for medical-grade aesthetics
 
 📊 Methodology
-
-The system processes 14 clinical features including cholesterol levels, resting blood pressure, and ST-segment depression through a multi-stage validation pipeline. By comparing outputs across three distinct model architectures, the system provides a "Consensus Score" that minimizes false positives in low-risk patients.
+The system processes 14 clinical features—including cholesterol levels, resting blood pressure, and ST-segment depression—through a multi-stage validation pipeline. By comparing outputs across three distinct model architectures, the system provides a "Consensus Score" that minimizes false positives in low-risk patients.
 
 Developed by Anas Rahman | BTech CSE AI (1st Year Student)
