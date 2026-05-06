@@ -799,16 +799,19 @@ function RiskRing({ value }: { value: number }) {
           risk
         </span>
       </div>
-      {/* Professional Branding Footer */}
-<footer className="mt-12 py-6 border-t border-slate-200">
-  <div className="text-center space-y-2">
-    <p className="text-sm font-medium text-slate-600">
-      Developed by <span className="text-blue-600 font-bold">Anas Rahman</span>
+      <footer className="w-full py-8 bg-slate-50 border-t mt-auto">
+  <div className="max-w-7xl mx-auto px-4 text-center">
+    <p className="font-semibold text-slate-800">
+      Developed by Anas Rahman | BTech CSE AI (1st Year)
     </p>
-    <p className="text-xs text-slate-400">
-      BTech CSE AI (1st Year Student) | Clinical Intelligence Prototype
+    <p className="text-xs text-slate-500 mt-2">
+      Architecture: React 18 • TypeScript • Tailwind CSS • Ensemble ML Models
     </p>
- </footer>
+    <p className="text-[10px] text-slate-400 mt-4 italic">
+      Disclaimer: This is a research prototype for educational purposes only.
+    </p>
+    </div>
+</footer>
 </div>
   );
 }
